@@ -1,0 +1,88 @@
+funqtheta[\[Theta]_, A_, B_] := A*\[Theta]^(-B);
+funFx[x_, typen_, epsilonu_] := 
+  Switch[typen, 
+   "III", .5 - .5*Erf[(Log[-x + 1] + .5*Log[2])/(Sqrt[2*Log[2]])]];
+funintF[a_, b_, typen_, epsilonu_] := 
+  Switch[typen, "III", 
+   Integrate[(-Sqrt[2*Log[2]])*(.5 + .5*Erf[y])*
+     E^(Sqrt[2*Log[2]]*y - Log[2]/2),
+    {y, (Log[-a + 1] + .5*Log[2])/(Sqrt[
+        2*Log[2]]), (Log[-b + 1] + .5*Log[2])/(Sqrt[2*Log[2]])}]];
+(* Set y = (Log[-x+1]+Log[2]/2)/Sqrt[2*Log[2]] *)
+
+
+part11 = \[Epsilon]d + \[Lambda]*
+    intFdu/(r + \[Lambda] + \[Theta]*q\[Theta]);
+part12 = (b - pstar)/\[Sigma];
+(*******************************************************************************)
+temp211 = \[Delta]*(r + \[Lambda] - \[Phi]*(1 - 
+        funFx[\[Epsilon]c, 
+         typen, \[Epsilon]u]))*(\[Epsilon]c - \[Epsilon]d);
+temp212 = r + \[Lambda] + \[Theta]*q\[Theta];
+temp213 = (\[Lambda]/(r + \[Lambda]) - \[Lambda]*\[Delta]/temp212)*
+   intFcu;
+part21 = \[Epsilon]c - temp211/((1 - \[Phi])*temp212) + temp213;
+
+temp2211 = ((\[Beta] + \[Phi]*(1 - \[Beta]))*
+     cF*(1 - \[Alpha]))/((1 - \[Beta])*(1 - \[Phi]));
+temp2212 = (\[Beta]*cP*\[Alpha])/(1 - \[Beta]);
+temp221 = \[Theta]*(temp2211 + temp2212);
+part22 = \[Delta]*\[Epsilon]d + ((1 - \[Delta])*(b - pstar) + 
+      temp221)/\[Delta];
+(*******************************************************************************)
+part31 = 1/q\[Theta];
+
+temp321 = (1 - \[Beta])*(1 - \[Phi])/cF;
+temp322 = \[Sigma]*(\[Epsilon]u - \[Epsilon]c)/(r + \[Lambda]) + \
+\[Delta]*\[Sigma]*(\[Epsilon]c - \[Epsilon]d)/((1 - \[Phi])*(r + \
+\[Lambda] + \[Theta]*q\[Theta]));
+part32 = temp321*temp322;
+(*******************************************************************************)
+part41 = 1/q\[Theta];
+
+temp421 = (1 - \[Beta])*\[Delta]*\[Sigma]*(\[Epsilon]u - \[Epsilon]d);
+temp422 = cP*(r + \[Lambda] + \[Theta]*q\[Theta]);
+part42 = temp421/temp422;
+(*******************************************************************************)
+F = {part11 - part12, part21 - part22, part31 - part32, 
+   part41 - part42};
+var = {\[Epsilon]d, \[Epsilon]c, \[Theta], \[Alpha],
+   pstar, b, \[Phi], \[Sigma], \[Beta], \[Lambda], cF, r, 
+   cP, \[Delta]};
+
+
+(* Jacobian Matrix *)
+Jac = D[F, {var}]
+
+MatB = Jac[[All, Range[1, 4]]]
+MatA = Jac[[All, Range[5, 14]]]
+MatC = LinearSolve[MatB, MatA]
+
+Simplify[ArrayReshape[Jac[[All, 1]], {4, 1}]] // TraditionalForm
+Export["dF_depsilond.gif", 
+ Simplify[ArrayReshape[Jac[[All, 1]], {4, 1}]] // TraditionalForm]
+Export["dF_depsilond.png", 
+ Simplify[ArrayReshape[Jac[[All, 1]], {4, 1}]] // TraditionalForm]
+
+Simplify[ArrayReshape[Jac[[All, 2]], {4, 1}]] // TraditionalForm
+Export["dF_depsilonc.gif", 
+ Simplify[ArrayReshape[Jac[[All, 2]], {4, 1}]] // TraditionalForm]
+Export["dF_depsilonc.png", 
+ Simplify[ArrayReshape[Jac[[All, 2]], {4, 1}]] // TraditionalForm]
+
+Simplify[ArrayReshape[Jac[[All, 3]], {4, 1}]] // TraditionalForm
+Export["dF_dtheta.gif", 
+ Simplify[ArrayReshape[Jac[[All, 3]], {4, 1}]] // TraditionalForm]
+Export["dF_dtheta.png", 
+ Simplify[ArrayReshape[Jac[[All, 3]], {4, 1}]] // TraditionalForm]
+
+Simplify[ArrayReshape[Jac[[All, 4]], {4, 1}]] // TraditionalForm
+Export["dF_dalpha.gif", 
+ Simplify[ArrayReshape[Jac[[All, 4]], {4, 1}]] // TraditionalForm]
+Export["dF_dalpha.png", 
+ Simplify[ArrayReshape[Jac[[All, 4]], {4, 1}]] // TraditionalForm]
+
+WriteMatlab[Jac[[All, 1]], "dF_depsilond.m", "dF_depsilond", 50]
+WriteMatlab[Jac[[All, 2]], "dF_depsilonc.m", "dF_depsilonc", 50]
+WriteMatlab[Jac[[All, 3]], "dF_dtheta.m", "dF_dtheta", 50]
+WriteMatlab[Jac[[All, 4]], "dF_dalpha.m", "dF_dalpha", 50]
