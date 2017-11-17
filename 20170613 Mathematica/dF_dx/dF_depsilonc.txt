@@ -1,0 +1,5 @@
+dF(1)/dx: 0.0 ; 
+ dF(2)/dx: (delta*(lambda + r - 1.0*phi*(0.5*erf(0.84932*log(1.0 - 1.0*epsilonc) + 0.29435) + 0.5)))/((phi - 1.0)*(lambda + r + (A*theta)/(theta^(1/B2))^(1.0*B1))) - 1.0*(0.5*erf(0.84932*log(1.0 - 1.0*epsilonc) + 0.29435) + 0.5)*(lambda/(lambda + r) - (1.0*delta*lambda)/(lambda + r + (A*theta)/(theta^(1/B2))^(1.0*B1))) - (0.47918*delta*phi*exp(-1.0*(0.84932*log(1.0 - 1.0*epsilonc) + 0.29435)^2)*(epsilonc - 1.0*epsilond))/((epsilonc - 1.0)*(phi - 1.0)*(lambda + r + (A*theta)/(theta^(1/B2))^(1.0*B1))) + 1.0 ; 
+ dF(3)/dx: ((beta - 1.0)*(phi - 1.0)*(sigma/(lambda + r) + (delta*sigma)/((phi - 1.0)*(lambda + r + (A*theta)/(theta^(1/B2))^(1.0*B1)))))/cf ; 
+ dF(4)/dx: 0.0 ; 
+ 

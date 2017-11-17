@@ -1,0 +1,5 @@
+dF(1)/dx: -1.0/sigma ; 
+ dF(2)/dx: (delta - 1.0)/delta ; 
+ dF(3)/dx: 0.0 ; 
+ dF(4)/dx: 0.0 ; 
+ 

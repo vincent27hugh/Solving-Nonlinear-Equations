@@ -1,0 +1,305 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.1' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     10348,        297]
+NotebookOptionsPosition[     10043,        283]
+NotebookOutlinePosition[     10387,        298]
+CellTagsIndexPosition[     10344,        295]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{
+    RowBox[{"Symbolic", " ", "Task", " ", "2"}], ",", "Jun13", ",", 
+    RowBox[{"2017", "\n", "June", " ", "12"}], ",", 
+    RowBox[{"2017", "\n", "June", " ", "1"}], ",", 
+    RowBox[{
+     RowBox[{"2017", "\n", "May", " ", "22"}], "-", "24"}], ",", 
+    RowBox[{"2017", "\n", "20170411", " ", "PM", "\n", "Mar18"}], ",", 
+    RowBox[{
+    "2017", "\n", "Task", " ", "#20170221", "\n", "Related", " ", "to", " ", 
+     RowBox[{"May16", "/", "Oct17"}]}], ",", 
+    RowBox[{"2016", "\n", "edited", " ", "in", " ", "Feb21"}], ",", "2017"}], 
+   " ", "*)"}], "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"Remove", "[", "\"\<Global`*\>\"", "]"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"funqtheta", "[", 
+      RowBox[{"\[Theta]_", ",", "A_", ",", "B_"}], "]"}], ":=", 
+     RowBox[{"A", "*", 
+      RowBox[{"\[Theta]", "^", 
+       RowBox[{"(", 
+        RowBox[{"-", "B"}], ")"}]}]}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"funFx", "[", 
+      RowBox[{"x_", ",", "typen_", ",", "epsilonu_"}], "]"}], ":=", 
+     RowBox[{"Switch", "[", 
+      RowBox[{"typen", ",", "\"\<III\>\"", ",", 
+       RowBox[{".5", "-", 
+        RowBox[{".5", "*", 
+         RowBox[{"Erf", "[", 
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"Log", "[", 
+              RowBox[{
+               RowBox[{"-", "x"}], "+", "1"}], "]"}], "+", 
+             RowBox[{".5", "*", 
+              RowBox[{"Log", "[", "2", "]"}]}]}], ")"}], "/", 
+           RowBox[{"(", 
+            RowBox[{"Sqrt", "[", 
+             RowBox[{"2", "*", 
+              RowBox[{"Log", "[", "2", "]"}]}], "]"}], ")"}]}], "]"}]}]}]}], 
+      "]"}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"funintF", "[", 
+      RowBox[{"a_", ",", "b_", ",", "typen_", ",", "epsilonu_"}], "]"}], ":=",
+      " ", 
+     RowBox[{"Integrate", "[", 
+      RowBox[{
+       RowBox[{"1", "-", 
+        RowBox[{"funFx", "[", 
+         RowBox[{"x", ",", "typen", ",", "epsilonu"}], "]"}]}], ",", 
+       RowBox[{"{", 
+        RowBox[{"x", ",", "a", ",", "b"}], "}"}], ",", 
+       RowBox[{"Assumptions", "\[Rule]", 
+        RowBox[{"x", "<", "1"}]}]}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{
+    "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**",
+      "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", 
+     "**", "**"}], "******)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"typen", "=", "\"\<III\>\""}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"q\[Theta]", "=", 
+     RowBox[{"funqtheta", "[", 
+      RowBox[{"\[Theta]", ",", "A", ",", "B"}], "]"}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"intFdu", "=", 
+     RowBox[{"funintF", "[", 
+      RowBox[{
+      "\[Epsilon]d", ",", "\[Epsilon]u", ",", "typen", ",", "\[Epsilon]u"}], 
+      "]"}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"intFcu", "=", 
+     RowBox[{"funintF", "[", 
+      RowBox[{
+      "\[Epsilon]c", ",", "\[Epsilon]u", ",", "typen", ",", "\[Epsilon]u"}], 
+      "]"}]}], ";"}], " ", "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{
+    "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**",
+      "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", 
+     "**", "**"}], "******)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"part11", "=", 
+     RowBox[{"\[Epsilon]d", "+", 
+      RowBox[{"\[Lambda]", "*", 
+       RowBox[{"intFdu", "/", 
+        RowBox[{"(", 
+         RowBox[{"r", "+", "\[Lambda]", "+", 
+          RowBox[{"\[Theta]", "*", "q\[Theta]"}]}], ")"}]}]}]}]}], ";"}], 
+   "\n", 
+   RowBox[{
+    RowBox[{"part12", "=", 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{"b", "-", "p"}], ")"}], "/", "\[Sigma]"}]}], ";"}], "\n", 
+   RowBox[{"(*", 
+    RowBox[{
+    "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**",
+      "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", 
+     "**", "**", "**", "**", "**", "**", "**", "**", "**", "**"}], 
+    "********)"}], "\n", 
+   RowBox[{
+    RowBox[{"temp211", "=", 
+     RowBox[{"\[Delta]", "*", 
+      RowBox[{"(", 
+       RowBox[{"r", "+", "\[Lambda]", "-", 
+        RowBox[{"\[Phi]", "*", 
+         RowBox[{"(", 
+          RowBox[{"1", "-", 
+           RowBox[{"funFx", "[", 
+            RowBox[{"\[Epsilon]c", ",", "typen", ",", "\[Epsilon]u"}], 
+            "]"}]}], ")"}]}]}], ")"}], "*", 
+      RowBox[{"(", 
+       RowBox[{"\[Epsilon]c", "-", "\[Epsilon]d"}], ")"}]}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"temp212", "=", 
+     RowBox[{"r", "+", "\[Lambda]", "+", 
+      RowBox[{"\[Theta]", "*", "q\[Theta]"}]}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"temp213", "=", 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"\[Lambda]", "/", 
+         RowBox[{"(", 
+          RowBox[{"r", "+", "\[Lambda]"}], ")"}]}], "-", 
+        RowBox[{"\[Lambda]", "*", 
+         RowBox[{"\[Delta]", "/", "temp212"}]}]}], ")"}], "*", "intFcu"}]}], 
+    ";"}], "\n", 
+   RowBox[{
+    RowBox[{"part21", "=", 
+     RowBox[{"\[Epsilon]c", "-", 
+      RowBox[{"temp211", "/", 
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"1", "-", "\[Phi]"}], ")"}], "*", "temp212"}], ")"}]}], "+",
+       "temp213"}]}], ";"}], "\n", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"temp2211", "=", 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"\[Beta]", "+", 
+          RowBox[{"\[Phi]", "*", 
+           RowBox[{"(", 
+            RowBox[{"1", "-", "\[Beta]"}], ")"}]}]}], ")"}], "*", "cF", "*", 
+        RowBox[{"(", 
+         RowBox[{"1", "-", "\[Alpha]"}], ")"}]}], ")"}], "/", 
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"1", "-", "\[Beta]"}], ")"}], "*", 
+        RowBox[{"(", 
+         RowBox[{"1", "-", "\[Phi]"}], ")"}]}], ")"}]}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"temp2212", "=", 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{"\[Beta]", "*", "cP", "*", "\[Alpha]"}], ")"}], "/", 
+      RowBox[{"(", 
+       RowBox[{"1", "-", "\[Beta]"}], ")"}]}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"temp221", "=", 
+     RowBox[{"\[Theta]", "*", 
+      RowBox[{"(", 
+       RowBox[{"temp2211", "+", "temp2212"}], ")"}]}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"part22", "=", 
+     RowBox[{
+      RowBox[{"\[Delta]", "*", "\[Epsilon]d"}], "+", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{"1", "-", "\[Delta]"}], ")"}], "*", 
+          RowBox[{"(", 
+           RowBox[{"b", "-", "p"}], ")"}]}], "+", "temp221"}], ")"}], "/", 
+       "\[Delta]"}]}]}], ";"}], "\n", 
+   RowBox[{"(*", 
+    RowBox[{
+    "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**",
+      "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", 
+     "**", "**", "**", "**", "**", "**", "**", "**", "**", "**"}], 
+    "********)"}], "\n", 
+   RowBox[{
+    RowBox[{"part31", "=", 
+     RowBox[{"1", "/", "q\[Theta]"}]}], ";"}], "\n", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"temp321", "=", 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{"1", "-", "\[Beta]"}], ")"}], "*", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{"1", "-", "\[Phi]"}], ")"}], "/", "cF"}]}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"temp322", "=", 
+     RowBox[{
+      RowBox[{"\[Sigma]", "*", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"\[Epsilon]u", "-", "\[Epsilon]c"}], ")"}], "/", 
+        RowBox[{"(", 
+         RowBox[{"r", "+", "\[Lambda]"}], ")"}]}]}], "+", 
+      RowBox[{"\[Delta]", "*", "\[Sigma]", "*", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"\[Epsilon]c", "-", "\[Epsilon]d"}], ")"}], "/", 
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{"1", "-", "\[Phi]"}], ")"}], "*", 
+          RowBox[{"(", 
+           RowBox[{"r", "+", "\[Lambda]", "+", 
+            RowBox[{"\[Theta]", "*", "q\[Theta]"}]}], ")"}]}], ")"}]}]}]}]}], 
+    ";"}], "\n", 
+   RowBox[{
+    RowBox[{"part32", "=", 
+     RowBox[{"temp321", "*", "temp322"}]}], ";"}], "\n", 
+   RowBox[{"(*", 
+    RowBox[{
+    "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**",
+      "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", 
+     "**", "**", "**", "**", "**", "**", "**", "**", "**", "**"}], 
+    "********)"}], "\n", 
+   RowBox[{
+    RowBox[{"part41", "=", 
+     RowBox[{"1", "/", "q\[Theta]"}]}], ";"}], "\n", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"temp421", "=", 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{"1", "-", "\[Beta]"}], ")"}], "*", "\[Delta]", "*", "\[Sigma]",
+       "*", 
+      RowBox[{"(", 
+       RowBox[{"\[Epsilon]u", "-", "\[Epsilon]d"}], ")"}]}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"temp422", "=", 
+     RowBox[{"cP", "*", 
+      RowBox[{"(", 
+       RowBox[{"r", "+", "\[Lambda]", "+", 
+        RowBox[{"\[Theta]", "*", "q\[Theta]"}]}], ")"}]}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"part42", "=", 
+     RowBox[{"temp421", "/", "temp422"}]}], ";"}], "\[IndentingNewLine]", 
+   "\n", "\[IndentingNewLine]", "\[IndentingNewLine]"}]}]], "Input",
+ CellChangeTimes->{{3.706516692777567*^9, 3.7065167225326133`*^9}, {
+  3.7065167758451395`*^9, 
+  3.706516812603383*^9}},ExpressionUUID->"15f539aa-322d-4b19-8a6b-\
+b06fc97afe14"]
+},
+WindowSize->{1264, 942},
+WindowMargins->{{-17, Automatic}, {Automatic, 3}},
+FrontEndVersion->"11.1 for Microsoft Windows (64-bit) (April 18, 2017)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 9481, 261, 905, "Input", "ExpressionUUID" -> \
+"15f539aa-322d-4b19-8a6b-b06fc97afe14"]
+}
+]
+*)
+

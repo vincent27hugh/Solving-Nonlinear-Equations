@@ -1,0 +1,5 @@
+dF(1)/dx: 0.0 ; 
+ dF(2)/dx: (theta*((beta*cp)/(beta - 1.0) + (cf*(beta - 1.0*phi*(beta - 1.0)))/((beta - 1.0)*(phi - 1.0))))/delta ; 
+ dF(3)/dx: 0.0 ; 
+ dF(4)/dx: 0.0 ; 
+ 

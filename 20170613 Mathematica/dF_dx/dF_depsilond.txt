@@ -1,0 +1,5 @@
+dF(1)/dx: 1.0 - (1.0*lambda*(0.5*erf(0.84932*log(1.0 - 1.0*epsilond) + 0.29435) + 0.5))/(lambda + r + (A*theta)/(theta^(1/B2))^(1.0*B1)) ; 
+ dF(2)/dx: - 1.0*delta - (1.0*delta*(lambda + r - 1.0*phi*(0.5*erf(0.84932*log(1.0 - 1.0*epsilonc) + 0.29435) + 0.5)))/((phi - 1.0)*(lambda + r + (A*theta)/(theta^(1/B2))^(1.0*B1))) ; 
+ dF(3)/dx: -(1.0*delta*sigma*(beta - 1.0))/(cf*(lambda + r + (A*theta)/(theta^(1/B2))^(1.0*B1))) ; 
+ dF(4)/dx: -(1.0*delta*sigma*(beta - 1.0))/(cp*(lambda + r + (A*theta)/(theta^(1/B2))^(1.0*B1))) ; 
+ 
